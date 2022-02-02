@@ -5,16 +5,19 @@
   "license": "",
   "scripts": {
     "build": "remix build",
-    "dev": "cross-env NODE_ENV=development netlify dev",
+    "ndev": "cross-env NODE_ENV=development netlify dev",
+    "dev": "remix dev",
     "postinstall": "remix setup node"
   },
   "dependencies": {
+    "@netlify/functions": "^0.10.0",
+    "@remix-run/netlify": "^1.1.3",
     "@remix-run/react": "^1.1.3",
+    "@remix-run/serve": "^1.1.3",
+    "@remix-run/vercel": "^1.1.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "remix": "^1.1.3",
-    "@netlify/functions": "^0.10.0",
-    "@remix-run/netlify": "^1.1.3"
+    "remix": "^1.1.3"
   },
   "devDependencies": {
     "@remix-run/dev": "^1.1.3",
