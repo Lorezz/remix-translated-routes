@@ -9,7 +9,6 @@ export let loader = async ({ params }) => {
   return json(data);
 };
 
-// https://remix.run/guides/routing#index-routes
 export default function Index() {
   let data = useLoaderData();
   const matches = useMatches();
