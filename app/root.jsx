@@ -26,7 +26,9 @@ export default function App() {
           <div>
             {['en', 'it'].map((locale) => (
               <span className="nav" key={locale} style={{ margin: 4 }}>
-                <Link to={`/${locale == 'en' ? '' : locale}`}>{locale}</Link>
+                <Link to={`/${locale == 'en' ? '' : locale + '/index'}`}>
+                  {locale}
+                </Link>
               </span>
             ))}
             <hr />
