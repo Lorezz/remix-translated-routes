@@ -3,10 +3,9 @@ import getPrefixes from '~/lib/prefixes';
 import { getPages } from '~/lib/pages';
 
 export let loader = async ({ params }) => {
-  const locale = params.locale || 'en';
-  const pages = getPages().filter((i) => i.locale === locale);
   const prefixes = getPrefixes();
-  const data = { params, pages, prefixes };
+  const pages = getPages();
+  const data = { pages, prefixes };
   return json(data);
 };
 
@@ -14,24 +13,31 @@ export let loader = async ({ params }) => {
 export default function Index() {
   let data = useLoaderData();
   const matches = useMatches();
+  const pathname = matches.reduce(
+    (found, item) =>
+      found ? found : item.pathname.length > 1 ? item.pathname.slice(1) : '',
+    ''
+  );
   const params = useParams();
   const { pages, prefixes } = data;
-  const locale = params.locale || 'en';
+  const locale = params.locale || pathname || 'en';
   return (
     <div>
       <h1>HOME {locale}</h1>
       <ul>
-        {pages.map((item) => {
-          const prefix = prefixes[item.__typename][item.locale];
-          const url = `${prefix}/${item.slug}`;
-          return (
-            <li key={item.slug}>
-              <Link to={`${item.locale === 'en' ? '' : '/it/'}${url}`}>
-                <span>{url}</span>
-              </Link>
-            </li>
-          );
-        })}
+        {pages
+          .filter((p) => p.locale === locale)
+          .map((item) => {
+            const prefix = prefixes[item.__typename][locale];
+            const url = `${prefix}/${item.slug}`;
+            return (
+              <li key={item.slug}>
+                <Link to={`${item.locale === 'en' ? '' : '/it/'}${url}`}>
+                  <span>{url}</span>
+                </Link>
+              </li>
+            );
+          })}
       </ul>
       <pre>{JSON.stringify(data, null, 2)}</pre>
       {params && (

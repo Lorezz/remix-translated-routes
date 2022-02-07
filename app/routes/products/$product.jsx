@@ -1,22 +1,20 @@
 import { useLoaderData, json, useMatches, useParams } from 'remix';
+import { getPage } from '~/lib/pages';
 
 export let loader = async ({ params }) => {
-  console.log('params', params);
-  //todo fake call
-  const data = { params };
+  const page = getPage(params.product);
+  const data = { page };
   return json(data);
 };
 
-// https://remix.run/guides/routing#index-routes
 export default function Index() {
-  let data = useLoaderData();
+  const data = useLoaderData();
   const matches = useMatches();
   const params = useParams();
   const { product } = params;
   return (
     <div>
       <h1>PRODUCT {product}</h1>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
       {params && (
         <>
           <h4>PARAMS</h4>
@@ -27,6 +25,17 @@ export default function Index() {
           </small>
         </>
       )}
+      {data && (
+        <>
+          <h4>DATA</h4>
+          <small>
+            <code>
+              <pre>{JSON.stringify(data, null, 2)}</pre>
+            </code>
+          </small>
+        </>
+      )}
+
       {matches && (
         <>
           <h4>MATCHES</h4>
