@@ -4,11 +4,12 @@ import {
   Meta,
   Outlet,
   Scripts,
-  ScrollRestoration
-} from "remix";
+  ScrollRestoration,
+  Link,
+} from 'remix';
 
 export function meta() {
-  return { title: "New Remix App" };
+  return { title: 'New Remix App' };
 }
 
 export default function App() {
@@ -21,7 +22,17 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Outlet />
+        <div>
+          <div>
+            {['en', 'it'].map((locale) => (
+              <span className="nav" key={locale} style={{ margin: 4 }}>
+                <Link to={`/${locale == 'en' ? '' : locale}`}>{locale}</Link>
+              </span>
+            ))}
+            <hr />
+          </div>
+          <Outlet />
+        </div>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
