@@ -12,10 +12,10 @@ export default function Index() {
   let data = useLoaderData();
   const matches = useMatches();
   const params = useParams();
-
+  const { product } = params;
   return (
     <div>
-      <h1>PRODUCT {data.title}</h1>
+      <h1>PRODUCT {product}</h1>
       <pre>{JSON.stringify(data, null, 2)}</pre>
       {params && (
         <>

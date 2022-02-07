@@ -2,8 +2,10 @@ import { useLoaderData, json, useMatches, useParams, Link } from 'remix';
 import getPrefixes from '~/lib/prefixes';
 import { getPages } from '~/lib/pages';
 
-export let loader = async ({ params }) => {
-  const { locale } = params;
+export let loader = async (allStuff) => {
+  console.log('allStuff', allStuff);
+  const { params } = allStuff;
+  const locale = params.locale || 'it';
   const pages = getPages().filter((i) => i.locale === locale);
   const prefixes = getPrefixes();
   const data = { params, pages, prefixes };
@@ -16,7 +18,7 @@ export default function Index() {
   const matches = useMatches();
   const params = useParams();
   const { pages, prefixes } = data;
-  const { locale } = params;
+  const locale = params.locale || matches.pathname || 'it';
   return (
     <div>
       <h1>HOME LOCALE {locale}</h1>
