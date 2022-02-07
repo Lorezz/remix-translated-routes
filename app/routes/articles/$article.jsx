@@ -1,19 +1,11 @@
 import { useLoaderData, json, useMatches, useParams } from 'remix';
 
 export let loader = async ({ params }) => {
-  const slugs = params['*'] || 'index';
-  console.log('slugs', slugs);
+  console.log('params', params);
   //todo fake call
-  const data = { slugs, title: 'fake' };
+  const data = { params };
   return json(data);
 };
-
-export function meta({ data }) {
-  return {
-    title: data?.title || 'mah',
-    description: data?.description || 'boh',
-  };
-}
 
 // https://remix.run/guides/routing#index-routes
 export default function Index() {
@@ -23,7 +15,7 @@ export default function Index() {
 
   return (
     <div>
-      <h1>HOME {data.title}</h1>
+      <h1>ARTICLE {data.title}</h1>
       <pre>{JSON.stringify(data, null, 2)}</pre>
       {params && (
         <>

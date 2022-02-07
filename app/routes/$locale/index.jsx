@@ -3,7 +3,7 @@ import getPrefixes from '~/lib/prefixes';
 import { getPages } from '~/lib/pages';
 
 export let loader = async ({ params }) => {
-  const locale = params.locale || 'en';
+  const { locale } = params;
   const pages = getPages().filter((i) => i.locale === locale);
   const prefixes = getPrefixes();
   const data = { params, pages, prefixes };
@@ -16,10 +16,10 @@ export default function Index() {
   const matches = useMatches();
   const params = useParams();
   const { pages, prefixes } = data;
-  const locale = params.locale || 'en';
+  const { locale } = params;
   return (
     <div>
-      <h1>HOME {locale}</h1>
+      <h1>HOME LOCALE {locale}</h1>
       <ul>
         {pages.map((item) => {
           const prefix = prefixes[item.__typename][item.locale];
