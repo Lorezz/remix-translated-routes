@@ -1,0 +1,82 @@
+[
+  {
+    "source": "articoli/come-configurare-algolia",
+    "dest": "articles/$article.jsx",
+    "item": {
+      "locale": "it",
+      "slug": "come-configurare-algolia",
+      "__typename": "article",
+      "id": "dw8a01atq7g"
+    }
+  },
+  {
+    "source": "articles/how-to-configure-algolia",
+    "dest": "articles/$article.jsx",
+    "item": {
+      "id": "f6i1qrqwa9m",
+      "locale": "en",
+      "slug": "how-to-configure-algolia",
+      "__typename": "article"
+    }
+  },
+  {
+    "source": "articoli/come-integrare-vimeo",
+    "dest": "articles/$article.jsx",
+    "item": {
+      "locale": "it",
+      "slug": "come-integrare-vimeo",
+      "__typename": "article",
+      "id": "s6rdusryl4"
+    }
+  },
+  {
+    "source": "articles/how-to-integrate-vimeo",
+    "dest": "articles/$article.jsx",
+    "item": {
+      "locale": "en",
+      "slug": "how-to-integrate-vimeo",
+      "__typename": "article",
+      "id": "uc1skk20h2"
+    }
+  },
+  {
+    "source": "prodotti/pantaloni-mimetici-verde-militare",
+    "dest": "products/$product.jsx",
+    "item": {
+      "locale": "it",
+      "slug": "pantaloni-mimetici-verde-militare",
+      "__typename": "product",
+      "id": "jro3zdxrxf8"
+    }
+  },
+  {
+    "source": "products/green-camo-pants",
+    "dest": "products/$product.jsx",
+    "item": {
+      "locale": "en",
+      "slug": "green-camo-pants",
+      "__typename": "product",
+      "id": "tcm6smjljfd"
+    }
+  },
+  {
+    "source": "prodotti/felpa-rosa-lavato",
+    "dest": "products/$product.jsx",
+    "item": {
+      "locale": "it",
+      "slug": "felpa-rosa-lavato",
+      "__typename": "product",
+      "id": "8tong250y5k"
+    }
+  },
+  {
+    "source": "products/sweater-washed-pink",
+    "dest": "products/$product.jsx",
+    "item": {
+      "locale": "en",
+      "slug": "sweater-washed-pink",
+      "__typename": "product",
+      "id": "wi5uv82iv1"
+    }
+  }
+]

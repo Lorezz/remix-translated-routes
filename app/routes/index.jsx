@@ -25,9 +25,9 @@ export default function Index() {
       <h1>HOME {locale}</h1>
       <ul>
         {pages
-          .filter((p) => p.locale === locale)
+          // .filter((p) => p.locale === locale)
           .map((item) => {
-            const prefix = prefixes[item.__typename][locale];
+            const prefix = prefixes[item.__typename][item.locale];
             const url = `${prefix}/${item.slug}`;
             return (
               <li key={item.slug}>

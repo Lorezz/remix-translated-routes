@@ -1,7 +1,9 @@
+const fsp = require('fs').promises;
+const path = require('path');
+
 /**
  * @type {import('@remix-run/dev/config').AppConfig}
  */
-const getPaths = require('./app/lib/getPaths');
 
 module.exports = {
   appDirectory: 'app',
@@ -14,28 +16,21 @@ module.exports = {
 
   // custom routes
   routes: async (defineRoutes) => {
-    const pages = await getPaths();
+    // const json = await fsp.readFile('./data/paths.json', 'utf8');
+    // const paths = JSON.parse(json);
+    // console.log('paths', paths);
     return defineRoutes((route) => {
-      for (let page of pages) {
-        const { source, dest } = page;
-        route(`${source}`, `pages/${dest}`);
-      }
+      route(`/products/:product`, `routes/products/$product.jsx`);
+      route(`/articles/:article`, `routes/articles/$article.jsx`);
+      route(`/prodotti/:product`, `routes/products/$product.jsx`);
+      route(`/articoli/:article`, `routes/articles/$article.jsx`);
+
+      // for (let page of paths) {
+      //   const { source, dest, item } = page;
+      //   route(`${source}`, `routes/${dest}`, { params: item });
+      // }
+      // route(`/it`, `routes/index.jsx`, { index: true, locale: 'it' });
+      // route(`/`, `routes/index.jsx`, { index: true, locale: 'en' });
     });
   },
 };
-
-/*
-// route(`/it`, `routes/index.jsx`, { index: true, locale: 'it' });
-//route(`/`, `routes/index.jsx`, { index: true, locale: 'en' });
-// create some custom routes from the pages/ dir
-      // for (let page of pages) {
-      //   if (page.endsWith('.mdx')) continue;
-      //   let slug = page.replace(/\.[a-z]+$/, '');
-      //   route(`/page/${slug}`, `pages/${page}`);
-      // }
-      // route('programmatic', 'pages/test.jsx', () => {
-      //   // route("/test", "routes/blog/index.tsx", { index: true });
-      //   route(':messageId', 'pages/child.jsx');
-      // });
-
-*/
