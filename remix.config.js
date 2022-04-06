@@ -1,5 +1,5 @@
-const fsp = require('fs').promises;
-const path = require('path');
+// const fsp = require('fs').promises;
+// const path = require('path');
 
 /**
  * @type {import('@remix-run/dev/config').AppConfig}
@@ -16,21 +16,15 @@ module.exports = {
 
   // custom routes
   routes: async (defineRoutes) => {
-    // const json = await fsp.readFile('./data/paths.json', 'utf8');
-    // const paths = JSON.parse(json);
-    // console.log('paths', paths);
     return defineRoutes((route) => {
-      route(`/products/:product`, `routes/products/$product.jsx`);
-      route(`/articles/:article`, `routes/articles/$article.jsx`);
-      route(`/prodotti/:product`, `routes/products/$product.jsx`);
-      route(`/articoli/:article`, `routes/articles/$article.jsx`);
+      route(`/it/prodotti/:product`, `pages/$locale/$product.jsx`);
+      route(`/it/articoli/:article`, `pages/$locale/$article.jsx`);
+      route(`/it`, `pages/$locale/index.jsx`);
 
-      // for (let page of paths) {
-      //   const { source, dest, item } = page;
-      //   route(`${source}`, `routes/${dest}`, { params: item });
-      // }
-      // route(`/it`, `routes/index.jsx`, { index: true, locale: 'it' });
-      // route(`/`, `routes/index.jsx`, { index: true, locale: 'en' });
+      // route('/:locale', 'pages/$locale/index.jsx', () => {
+      //   route(`prodotti/*`, `pages/$locale/$product.jsx`);
+      //   route(`articoli/*`, `pages/$locale/$article.jsx`);
+      // });
     });
   },
 };

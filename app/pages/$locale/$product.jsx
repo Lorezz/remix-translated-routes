@@ -14,7 +14,7 @@ export default function Index() {
   const { product } = params;
   return (
     <div>
-      <h1>PRODUCT {product}</h1>
+      <h1>page PRODUCT {product}</h1>
       {params && (
         <>
           <h4>PARAMS</h4>

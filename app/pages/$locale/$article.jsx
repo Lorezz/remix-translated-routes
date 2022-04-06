@@ -2,6 +2,7 @@ import { useLoaderData, json, useMatches, useParams } from 'remix';
 import { getPage } from '~/lib/pages';
 
 export let loader = async ({ params }) => {
+  console.log('page PARAMS', params);
   const page = getPage(params.article);
   const data = { page };
   return json(data);
@@ -14,7 +15,7 @@ export default function Index() {
   const { article } = params;
   return (
     <div>
-      <h1>ARTICLE {article}</h1>
+      <h1>page ARTICLE {article}</h1>
       {params && (
         <>
           <h4>PARAMS</h4>
