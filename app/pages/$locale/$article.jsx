@@ -2,7 +2,6 @@ import { useLoaderData, json, useMatches, useParams } from 'remix';
 import { getPage } from '~/lib/pages';
 
 export let loader = async ({ params }) => {
-  console.log('page PARAMS', params);
   const page = getPage(params.article);
   const data = { page };
   return json(data);

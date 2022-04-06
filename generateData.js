@@ -15,6 +15,12 @@ const pages = [
     __typename: 'article',
   },
   {
+    id: 'fdasdsaqwa9m',
+    locale: 'fr',
+    slug: 'comment-configurer-algolia',
+    __typename: 'article',
+  },
+  {
     locale: 'it',
     slug: 'come-integrare-vimeo',
     __typename: 'article',
@@ -25,6 +31,18 @@ const pages = [
     slug: 'how-to-integrate-vimeo',
     __typename: 'article',
     id: 'uc1skk20h2',
+  },
+  {
+    locale: 'fr',
+    slug: 'comment-integrer-vimeo',
+    __typename: 'article',
+    id: 'uc1xxxx20h2',
+  },
+  {
+    locale: 'de',
+    slug: 'wie-integriere-vimeo',
+    __typename: 'article',
+    id: 'uc1xyyy20h2',
   },
   {
     locale: 'it',
@@ -50,26 +68,45 @@ const pages = [
     __typename: 'product',
     id: 'wi5uv82iv1',
   },
+  {
+    locale: 'fr',
+    slug: 'les-pantalons-mimétiques-verdes-militaires',
+    __typename: 'product',
+    id: 'wi76567rfs2iv1',
+  },
+  {
+    locale: 'de',
+    slug: 'die-grünen-Mimik-Hosen',
+    __typename: 'product',
+    id: 'wi72342v1',
+  },
 ];
 
 const prefixes = {
   article: {
     it: 'articoli',
     en: 'articles',
+    fr: 'atricules',
+    de: 'artikel',
   },
   product: {
     it: 'prodotti',
     en: 'products',
+    fr: 'produits',
+    de: 'produkte',
   },
 };
+
+const locales = ['en', 'it', 'fr', 'de'];
 
 function getPaths() {
   return new Promise((resolve, reject) => {
     const paths = pages.map((item) => {
       const prefix = prefixes[item.__typename][item.locale];
-      const source = `${prefix}/${item.slug}`;
-      const dest = `${prefixes[item.__typename]['en']}/$${item.__typename}.jsx`;
-      return { source, dest, item };
+      //   const source = `${prefix}/${item.slug}`;
+      //   const dest = `${prefixes[item.__typename]['en']}/$${item.__typename}.jsx`;
+      //  return { source, dest, item };
+      return item;
     });
     console.log('paths', paths);
     resolve(paths);
@@ -79,5 +116,13 @@ function getPaths() {
 (async () => {
   const data = await getPaths();
   console.log('data', data);
-  await fsp.writeFile('./data/paths.json', JSON.stringify(data, null, 2));
+  await fsp.writeFile('./app/data/paths.json', JSON.stringify(data, null, 2));
+  await fsp.writeFile(
+    './app/data/prefixes.json',
+    JSON.stringify(prefixes, null, 2)
+  );
+  await fsp.writeFile(
+    './app/data/locales.json',
+    JSON.stringify(locales, null, 2)
+  );
 })();

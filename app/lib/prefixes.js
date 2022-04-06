@@ -1,13 +1,4 @@
-const prefixes = {
-  article: {
-    it: 'articoli',
-    en: 'articles',
-  },
-  product: {
-    it: 'prodotti',
-    en: 'products',
-  },
-};
+import prefixes from '~/data/prefixes.json';
 
 export default function getPrefixes() {
   return prefixes;

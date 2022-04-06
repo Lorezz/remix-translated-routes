@@ -3,6 +3,7 @@ import getPrefixes from '~/lib/prefixes';
 import { getPages } from '~/lib/pages';
 
 export let loader = async ({ params }) => {
+  console.log('index PARAMS', params);
   const prefixes = getPrefixes();
   const pages = getPages();
   const data = { pages, prefixes };
@@ -12,11 +13,14 @@ export let loader = async ({ params }) => {
 export default function Index() {
   let data = useLoaderData();
   const matches = useMatches();
-  const pathname = matches.reduce(
-    (found, item) =>
-      found ? found : item.pathname.length > 1 ? item.pathname.slice(1) : '',
-    ''
-  );
+  const pathname = matches
+    .reduce(
+      (found, item) =>
+        found ? found : item.pathname.length > 1 ? item.pathname.slice(1) : '',
+      ''
+    )
+    .replace('/', '')
+    .trim();
   const params = useParams();
   const { pages, prefixes } = data;
   const locale = params.locale || pathname || 'en';
@@ -25,13 +29,17 @@ export default function Index() {
       <h1>page HOME {locale}</h1>
       <ul>
         {pages
-          // .filter((p) => p.locale === locale)
+          .filter((p) => p.locale === locale)
           .map((item) => {
             const prefix = prefixes[item.__typename][item.locale];
             const url = `${prefix}/${item.slug}`;
             return (
               <li key={item.slug}>
-                <Link to={`${item.locale === 'en' ? '' : '/it/'}${url}`}>
+                <Link
+                  to={`${
+                    item.locale === 'en' ? '' : '/' + item.locale + '/'
+                  }${url}`}
+                >
                   <span>{url}</span>
                 </Link>
               </li>

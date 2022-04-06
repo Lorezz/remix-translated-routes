@@ -8,11 +8,14 @@ import {
   Link,
 } from 'remix';
 
+import getLocales from '~/lib/locales';
+
 export function meta() {
   return { title: 'New Remix App' };
 }
 
 export default function App() {
+  const locales = getLocales();
   return (
     <html lang="en">
       <head>
@@ -24,7 +27,7 @@ export default function App() {
       <body>
         <div>
           <div>
-            {['en', 'it'].map((locale) => (
+            {locales.map((locale) => (
               <span className="nav" key={locale} style={{ margin: 4 }}>
                 <Link to={`/${locale == 'en' ? '' : locale + '/'}`}>
                   {locale}

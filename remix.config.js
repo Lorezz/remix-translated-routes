@@ -17,9 +17,13 @@ module.exports = {
   // custom routes
   routes: async (defineRoutes) => {
     return defineRoutes((route) => {
-      route(`/it/prodotti/:product`, `pages/$locale/$product.jsx`);
-      route(`/it/articoli/:article`, `pages/$locale/$article.jsx`);
-      route(`/it`, `pages/$locale/index.jsx`);
+      route(`/:locale/prodotti/:product`, `pages/$locale/$product.jsx`);
+      route(`/:locale/produits/:product`, `pages/$locale/$product.jsx`);
+      route(`/:locale/produkte/:product`, `pages/$locale/$product.jsx`);
+      route(`/:locale/articoli/:article`, `pages/$locale/$article.jsx`);
+      route(`/:locale/atricules/:article`, `pages/$locale/$article.jsx`);
+      route(`/:locale/artikel/:article`, `pages/$locale/$article.jsx`);
+      route(`/:locale`, `pages/$locale/index.jsx`);
 
       // route('/:locale', 'pages/$locale/index.jsx', () => {
       //   route(`prodotti/*`, `pages/$locale/$product.jsx`);
